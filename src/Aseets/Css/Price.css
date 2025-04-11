@@ -1,0 +1,12 @@
+input[type="number"] {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 5px 25px;
+    outline: none;
+    width: 400px;
+    height: 40px;
+    font-size: 16px;
+    transition: all .3s ease-in-out;
+    margin: 0px 15px;
+}
+

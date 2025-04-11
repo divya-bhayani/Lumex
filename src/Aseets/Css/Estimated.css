@@ -1,0 +1,57 @@
+.form-switch .form-check-input-switch {
+    width: 38px !important;
+    height: 24px;
+    padding: 1px;
+    position: relative;
+    border-radius: 9999px;
+    background-image: none;
+    cursor: pointer;
+    background-color: #fff;
+    transition-property: all;
+    transition-duration: .1s;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    border: 1px solid #e7e6e6;
+    vertical-align: middle
+}
+
+.form-switch .form-check-input-switch:checked {
+    background-color: #245987
+}
+
+.form-switch .form-check-label {
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    text-wrap: nowrap
+}
+
+.form-switch .form-check-input-switch:before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    box-shadow: 1px 1px 3px rgba(0,0,0,.25);
+    transition-property: margin-left;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 1px;
+    border-radius: 9999px;
+    transition-duration: .2s;
+    transition-timing-function: cubic-bezier(.4,0,.2,1)
+}
+
+.form-switch .form-check-input-switch:checked:before {
+    margin-left: 14px;
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 255 255/var(--tw-bg-opacity))
+}

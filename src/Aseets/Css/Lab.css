@@ -1,0 +1,9 @@
+.number_of_stone_inner {
+    display: flex;
+    /* align-items: unset; */
+}
+
+.lab_inner {
+    display: flex;
+    justify-content: center;
+}

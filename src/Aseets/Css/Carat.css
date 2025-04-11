@@ -1,0 +1,50 @@
+.form_control_inner {
+    padding: 20px 0px;
+    /* display: flex; */
+}
+
+.form_control_inner input,textarea[type="number"] {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 5px 25px;
+    outline: none;
+    width: 400px;
+    height: 40px;
+    font-size: 16px;
+    transition: all .3s ease-in-out;
+    margin: 0px 15px;
+}
+.carat_range_inner {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.carat_range_inner li {
+    list-style: none;
+}
+.carat_box {
+    height: 40px;
+  
+}
+
+.sub_box_inner.carat_box span {
+  
+    margin: auto;
+    font-size: 13px;
+}
+.apply {
+    /* margin: auto; */
+    padding: 20px 50px;
+}
+
+.apply button {
+    width: 100px;
+    height: 50px;
+    font-size: 15px;
+    background: #fff;
+    border: none;
+    border-radius: 5px;
+    background-color: hsl(208, 58%, 34%);
+    color: white;
+}

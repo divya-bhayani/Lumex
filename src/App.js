@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import Ceritified from "./Components/Admin/Cerified_diamond/Ceritified";
+import { store } from "./Store/Store";
+import { Provider, useSelector } from "react-redux";
+import Search_Result from "./Components/Admin/Search_result/Search_Result";
 
 function App() {
+  // useEffect(async () => {
+  //   const response = await cerified();
+  //   console.log(response);
+  // }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      {/* <Ceritified /> */}
+      <Search_Result />
+    </Provider>
   );
 }
 

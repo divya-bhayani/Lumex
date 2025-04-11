@@ -1,0 +1,10 @@
+.clarity{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+.clarity_box {
+    padding: 0px 60px;
+}
