@@ -93,3 +93,8 @@ a, button, li, p, span, td {
 .sub_box_inner img {
     width: 35px;
 }
+.apply_inner {
+    display: flex;
+    justify-content: left;
+    gap: 30px;
+}

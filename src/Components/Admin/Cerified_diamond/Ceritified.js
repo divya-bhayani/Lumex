@@ -12,6 +12,7 @@ import { useQuery } from "react-query";
 import Shap from "./Shap";
 import { Action_creater } from "../../../Store/Action_creater";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function Ceritified() {
   const { data, isError, isSuccess, status, isLoading } = useQuery(
@@ -46,6 +47,7 @@ export default function Ceritified() {
   console.log("filter", filter);
   console.log(filter.shape);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -80,9 +82,12 @@ export default function Ceritified() {
         <LAB data={data?.data} filters={filter} setFilter={setFilter} />
         <Price data={data?.data} />{" "}
         <div className="apply">
-          <button onClick={() => dispatch(Action_creater(filter))}>
-            APPLY
-          </button>
+          <div className="apply_inner">
+            <button onClick={() => dispatch(Action_creater(filter))}>
+              APPLY
+            </button>
+            <button onClick={() => navigate("/Search_result")}>SEARCH</button>
+          </div>
         </div>
       </div>
     </>
