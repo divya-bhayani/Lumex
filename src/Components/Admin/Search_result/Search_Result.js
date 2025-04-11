@@ -24,7 +24,7 @@ export default function Search_Result() {
 
   const [total, setTotal] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(50);
   const onPerPageChange = (page) => {
     setPageSize(page);
   };
@@ -94,12 +94,10 @@ export default function Search_Result() {
         />
       ),
     },
-
     {
       dataField: "Stock_No",
       text: "Stock_No",
     },
-
     {
       dataField: "Certificate_URL",
       text: "Preview",
@@ -176,11 +174,11 @@ export default function Search_Result() {
     },
     {
       dataField: "Depth",
-      text: "Depth",
+      text: "Depth(%)",
     },
     {
       dataField: "Table_Percentage",
-      text: "Table",
+      text: "Table(%)",
     },
     {
       dataField: "Ratio",
