@@ -3,7 +3,7 @@ import "../../../Aseets/Css/Table.css";
 import { dynamicSort } from "../../../Utils/Hook/DynamicSort";
 
 export default function Table({ data, column }) {
-  const [sortOrder, setSortOrder] = useState("asc");
+  const [sortOrder, setSortOrder] = useState("desc");
   const [sortfield, setSortfield] = useState();
   const handlesort = (dataField) => {
     setSortfield(dataField);

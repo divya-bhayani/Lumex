@@ -57,6 +57,7 @@ export default function Search_Result() {
     data.data.data.map((row) => {
       updated[row._id] = checked;
     });
+    // console.log("updated", updated);
     setSelectchecked(updated);
   };
 
@@ -75,10 +76,10 @@ export default function Search_Result() {
     ?.reduce((sum, row) => sum + (row.Carat || 0), 0);
   console.log(weight);
 
-  //count sum of price
-  const totalprice = data?.data?.data
+  //count average of price
+  const PriceAverage = data?.data?.data
     ?.filter((row) => selectchecked[row._id])
-    ?.reduce((sum, row) => sum + (row.Price || 0), 0);
+    ?.reduce((sum, row, _, arr) => sum + (row.Price || 0) / arr.length, 0);
 
   //table column
   const column = [
@@ -88,7 +89,7 @@ export default function Search_Result() {
       formatter: (cell, row) => (
         <input
           type="checkbox"
-          checked={!!selectchecked[row._id]}
+          checked={selectchecked[row._id]}
           onChange={() => handleChange(row._id)}
         />
       ),
@@ -185,10 +186,6 @@ export default function Search_Result() {
       dataField: "Ratio",
       text: "Ratio",
     },
-    // {
-    //   dataField: "Growth",
-    //   text: "Growth",
-    // },
     {
       dataField: "Fluor",
       text: "Flour",
@@ -258,7 +255,7 @@ export default function Search_Result() {
                         <div className="card">
                           <div className="box_header">PRICE/CTS</div>
                           <div className="nox_body">
-                            <h4>${totalprice?.toFixed(2)}</h4>
+                            <h4>${PriceAverage?.toFixed(2)}</h4>
                           </div>
                         </div>
                       </div>
@@ -336,11 +333,17 @@ export default function Search_Result() {
                       <MdOutlineSettingsSuggest />
                       Modify Search
                     </button>
-                    <button className="btn" disabled>
+                    <button
+                      className="btn"
+                      disabled={!Object.values(selectchecked).some(Boolean)}
+                    >
                       <MdShoppingCart />
                       Add To Cart
                     </button>
-                    <button className="btn" disabled>
+                    <button
+                      className="btn"
+                      disabled={!Object.values(selectchecked).some(Boolean)}
+                    >
                       <BsSuitHeart />
                       Add To Wishlist
                     </button>
