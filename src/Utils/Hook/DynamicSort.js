@@ -4,16 +4,13 @@ export const dynamicSort = (field, order = "asc") => {
       const aVal = a[field];
       const bVal = b[field];
 
-      const aType = typeof aVal;
-      const bType = typeof bVal;
-
-      if (aType === "string" && bType === "string") {
+      if (typeof aVal === "string" && typeof bVal === "string") {
         return order === "asc"
           ? aVal.localeCompare(bVal)
           : bVal.localeCompare(aVal);
       }
 
-      if (aType === "number" && bType === "number") {
+      if (typeof aVal === "number" && typeof bVal === "number") {
         return order === "asc" ? aVal - bVal : bVal - aVal;
       }
     } else {

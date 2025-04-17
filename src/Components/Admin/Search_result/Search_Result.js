@@ -30,7 +30,7 @@ export default function Search_Result() {
   };
 
   //api through data fetch
-  const { refetch, data, isError, isSuccess, status, isLoading } = useQuery(
+  const { data } = useQuery(
     ["search", pageSize, currentPage],
     () => Search_list({ limit: pageSize, page: currentPage }),
     {
@@ -385,6 +385,7 @@ export default function Search_Result() {
                                           ? item.Image
                                           : "https://dev.lumex.online/_next/static/media/product.2f7a2f0b.png"
                                       }
+                                      alt=""
                                       width={50}
                                     />
                                   </div>
@@ -467,8 +468,6 @@ export default function Search_Result() {
             ""
           )}
           <Pagination
-            parPage={[10, 25, 50, 100, 150, 200, 250]}
-            onPerPageChange={(page) => setPageSize(page)}
             onPageChange={(page) => setCurrentPage(page)}
             totalCount={total}
             currentPage={currentPage}

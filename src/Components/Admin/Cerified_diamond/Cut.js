@@ -1,15 +1,26 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { cerified } from "../../../Services/Admin/certified-diamond";
+import { SiEraser } from "react-icons/si";
 
 export default function Cut({ data, filters, setFilter }) {
   const handlecut = (color, key) => {
+    console.log("===========", key, color);
     if (filters[key]?.includes(color)) {
       const list = filters[key]?.filter((ele) => ele != color);
       setFilter({ ...filters, [key]: list });
     } else {
       const list = [...(filters[key] || []), color];
       setFilter({ ...filters, [key]: list });
+    }
+  };
+
+  const handleQuick_search = (search) => {
+    if (filters?.quick_search?.includes(search)) {
+      const list = filters?.quick_search?.filter((ele) => ele != search);
+      setFilter({ ...filters, quick_search: list });
+    } else {
+      setFilter({ ...filters, quick_search: [search] });
     }
   };
 
@@ -29,13 +40,17 @@ export default function Cut({ data, filters, setFilter }) {
                   <div className="sub_shap_inner">
                     <ul className="finish-blocks">
                       {data?.cuts.map((cuts, index) => {
-                        const id = cuts._id;
+                        const quickSearchIndex = data?.symmetrys?.findIndex(
+                          (symmetry) =>
+                            filters?.quick_search?.includes(symmetry._id)
+                        );
                         return (
                           <li>
                             <button className="custom_button" key={cuts._id}>
                               <label
                                 className={` ${
-                                  filters?.cut?.includes(cuts._id)
+                                  filters?.cut?.includes(cuts._id) ||
+                                  quickSearchIndex >= index
                                     ? "sub_active"
                                     : ""
                                 }`}
@@ -61,24 +76,29 @@ export default function Cut({ data, filters, setFilter }) {
                 </div>{" "}
                 <ul className="overtons">
                   {data?.polish.map((polish, index) => {
-                    const id = polish._id;
+                    const quickSearchIndex = data?.symmetrys?.findIndex(
+                      (symmetry) =>
+                        filters?.quick_search?.includes(symmetry._id)
+                    );
+
                     return (
-                      <li>
-                        <button className="custom_button" key={polish._id}>
+                      <li key={polish._id}>
+                        <button className="custom_button">
                           <label
-                            className={` ${
-                              filters?.polishs?.includes(polish._id)
+                            className={
+                              filters?.polish?.includes(polish._id) ||
+                              quickSearchIndex >= index
                                 ? "sub_active"
                                 : ""
-                            }`}
-                            onClick={() => handlecut(polish._id, "polishs")}
+                            }
+                            onClick={() => handlecut(polish._id, "polish")}
                           >
                             <span>{polish.polish}</span>
                           </label>
                         </button>
                       </li>
                     );
-                  })}{" "}
+                  })}
                 </ul>
               </div>
             </div>
@@ -91,13 +111,18 @@ export default function Cut({ data, filters, setFilter }) {
                 </div>
                 <ul className="overtons">
                   {data?.symmetrys.map((symmetrys, index) => {
-                    const id = symmetrys._id;
+                    const quickSearchIndex = data?.symmetrys?.findIndex(
+                      (symmetry) =>
+                        filters?.quick_search?.includes(symmetry._id)
+                    );
+
                     return (
                       <li>
                         <button className="custom_button" key={symmetrys._id}>
                           <label
                             className={` ${
-                              filters?.symmetry?.includes(symmetrys._id)
+                              filters?.symmetry?.includes(symmetrys._id) ||
+                              quickSearchIndex >= index
                                 ? "sub_active"
                                 : ""
                             }`}
@@ -121,7 +146,6 @@ export default function Cut({ data, filters, setFilter }) {
                 </div>
                 <ul className="overtons">
                   {data?.symmetrys.map((symmetrys, index) => {
-                    const id = `syme-${index}`;
                     return (
                       <li>
                         <button className="custom_button" key={symmetrys._id}>
@@ -131,9 +155,9 @@ export default function Cut({ data, filters, setFilter }) {
                                 ? "sub_active"
                                 : ""
                             }`}
-                            onClick={() =>
-                              handlecut(symmetrys._id, "quick_search")
-                            }
+                            onClick={() => {
+                              handleQuick_search(symmetrys._id);
+                            }}
                           >
                             <span>{symmetrys.symmetry}</span>
                           </label>

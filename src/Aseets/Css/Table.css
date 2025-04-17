@@ -58,3 +58,25 @@ tr.table_content_row td {
     background-color: #fff;
     right: -10px;
 }
+.table_heading_text:not(:last-child) .custom-table-head-name:after {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 15px;
+    width: 1px;
+    background-color: #fff;
+    right: -10px;
+}
+.custom-table-head-name {
+    display: flex;
+    white-space: nowrap;
+    align-items: center;
+    cursor: text;
+    position: relative;
+    align-items: anchor-center;
+    justify-content: center;
+}
+th.table_heading_text svg {
+    padding: 1px 3px;
+    font-size: 17px;
+}

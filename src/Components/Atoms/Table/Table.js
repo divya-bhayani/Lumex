@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../../../Aseets/Css/Table.css";
 import { dynamicSort } from "../../../Utils/Hook/DynamicSort";
-
+import { FaCaretDown } from "react-icons/fa";
+import { FaCaretUp } from "react-icons/fa";
 export default function Table({ data, column }) {
   const [sortOrder, setSortOrder] = useState("desc");
   const [sortfield, setSortfield] = useState();
@@ -9,10 +10,6 @@ export default function Table({ data, column }) {
     setSortfield(dataField);
     setSortOrder(sortOrder === "asc" ? "desc" : "asc");
   };
-
-  const sortedData = Array.isArray(data)
-    ? [...data].sort(dynamicSort(sortfield, sortOrder))
-    : [];
 
   return (
     <table className="main_table">
@@ -26,7 +23,20 @@ export default function Table({ data, column }) {
                   className="table_heading_text"
                   onClick={() => handlesort(ele.dataField)}
                 >
-                  {ele.text}
+                  <div className="custom-table-head-name">
+                    {ele.text}
+                    {ele.dataField !== "Stock_No" &&
+                    ele.dataField !== "Certificate_URL" &&
+                    ele.dataField !== "#" ? (
+                      sortfield === ele.dataField && sortOrder === "asc" ? (
+                        <FaCaretUp />
+                      ) : (
+                        <FaCaretDown />
+                      )
+                    ) : (
+                      ""
+                    )}
+                  </div>
                 </th>
               );
             })}
@@ -35,7 +45,7 @@ export default function Table({ data, column }) {
       <tbody className="table_body">
         {data &&
           data?.length > 0 &&
-          sortedData.map((ele, i) => {
+          [...data].sort(dynamicSort(sortfield, sortOrder)).map((ele, i) => {
             return (
               <tr key={i} className="table_content_row">
                 {column &&
